@@ -13,3 +13,4 @@ $ git clone https://github.com/theritty/spring-embedded-database.git
 $ mvn jetty:run
 ```
 Access ```http://localhost:8080/products```
+# bookstore-v2

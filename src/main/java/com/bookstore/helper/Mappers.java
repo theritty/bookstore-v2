@@ -31,15 +31,15 @@ public class Mappers  {
 
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Product product = new Product();
-			product.setId(rs.getInt("id"));
+			product.setItemId(rs.getInt("id"));
 			product.setName(rs.getString("name"));
-			product.setCategory_id(rs.getInt("category_id"));
-			product.setDescription(rs.getString("description"));
+			product.setCategoryNode(rs.getString("category_id"));
+			product.setShortDescription(rs.getString("description"));
 			product.setDiscount(rs.getDouble("discount"));
 			product.setIs_best_seller(rs.getBoolean("is_best_seller"));
 			product.setIs_new(rs.getBoolean("is_new"));
-			product.setPicture_url(rs.getString("picture_url"));
-			product.setPrice(rs.getDouble("price"));
+			product.setThumbnailImage(rs.getString("picture_url"));
+			product.setSalePrice(rs.getDouble("price"));
 			product.setRemaining_quantity(rs.getInt("remaining_quantity"));
 			product.setSpec_id(rs.getInt("spec_id"));
 
@@ -51,11 +51,11 @@ public class Mappers  {
 
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Product product = new Product();
-			product.setId(rs.getInt("id"));
+			product.setItemId(rs.getInt("id"));
 			product.setName(rs.getString("name"));
 			product.setDiscount(rs.getDouble("discount"));
-			product.setPrice(rs.getDouble("price"));
-			product.setPicture_url(rs.getString("picture_url"));
+			product.setSalePrice(rs.getDouble("price"));
+			product.setThumbnailImage(rs.getString("picture_url"));
 
 			return product;
 		}

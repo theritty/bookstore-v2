@@ -17,7 +17,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById("descriptionField").innerHTML = ${productObj.description};
+            document.getElementById("descriptionField").innerHTML = ${productObj.shortDescription};
         }, false);
 
         $(document).ready(function()
@@ -54,45 +54,45 @@
     <h2>Product Details</h2>
 
     <div style="height: 300px;">
-    <div class="divide-2">
-        <img
-            src="<c:url value="${productObj.picture_url}"/>"
-            width="80%" height="100%" alt="${productObj.name}" /></td>
-    </div>
-
-    <div  class="divide-2">
-        <h4> <b>${productObj.name }</b> </h4>
-        <p> <span class="small_underlined"> ${fn:length(productObj.reviews)} reviews</span>
-            <span class="small_underlined">  ${productObj.specification.author }</span> </p>
-
-        <c:if test="${productObj.discount == 0.0}">
-            <p><strong>$${productObj.price}</strong></p>
-        </c:if>
-        <c:if test="${productObj.discount != 0.0}">
-
-            <strong> $${productObj.price*(1-productObj.discount)}</strong>
-            &nbsp;&nbsp;&nbsp;
-            <span style="color: gray; font-size: 13px;"> List </span>  <span class="discountText"> $${productObj.price} </span>
-        </c:if>
-
-        <div id="selectQty" style="    margin-top: 70px">
-            <p>Qty: ${productObj.quantityString}
-                <button type="button" onclick="" style="border-radius: 100px;
-    font-weight: 400;
-    height: 2rem;
-    text-align: center;
-    white-space: nowrap;
-    background-color: #0065ff;
-    color: #fff;
-margin-left: 15px;">Add to Cart</button></p>
+        <div class="divide-2">
+            <img
+                src="<c:url value="${productObj.thumbnailImage}"/>"
+                width="80%" height="100%" alt="${productObj.name}" /></td>
         </div>
 
+        <div  class="divide-2">
+            <h4> <b>${productObj.name }</b> </h4>
+            <p> <span class="small_underlined"> ${fn:length(productObj.reviews)} reviews</span>
+                <span class="small_underlined">  ${productObj.specification.author }</span> </p>
+
+            <c:if test="${productObj.discount == 0.0}">
+                <p><strong>$${productObj.salePrice}</strong></p>
+            </c:if>
+            <c:if test="${productObj.discount != 0.0}">
+
+                <strong> $${productObj.salePrice*(1-productObj.discount)}</strong>
+                &nbsp;&nbsp;&nbsp;
+                <span style="color: gray; font-size: 13px;"> List </span>  <span class="discountText"> $${productObj.salePrice} </span>
+            </c:if>
+
+            <div itemId="selectQty" style="    margin-top: 70px">
+                <p>Qty: ${productObj.quantityString}
+                    <button type="button" onclick="" style="border-radius: 100px;
+                            font-weight: 400;
+                            height: 2rem;
+                            text-align: center;
+                            white-space: nowrap;
+                            background-color: #0065ff;
+                            color: #fff;
+                            margin-left: 15px;">Add to Cart</button></p>
+            </div>
+
+        </div>
     </div>
-</div>
     <hr>
 
     <h3>About The Product</h3>
-    <p id="descriptionField">${productObj.description}</p>
+    <p itemId="descriptionField">${productObj.shortDescription}</p>
     <hr>
 
 

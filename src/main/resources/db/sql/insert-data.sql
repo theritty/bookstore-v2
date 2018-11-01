@@ -2,10 +2,10 @@ INSERT INTO users VALUES (1, 'bookstore', 'bookstore@gmail.com');
 INSERT INTO users VALUES (2, 'alex', 'alex@yahoo.com');
 INSERT INTO users VALUES (3, 'joel', 'joel@gmail.com');
 
-INSERT INTO products VALUES (1, 'The Medical Examiner', '<div class="product-description-disclaimer" data-tl-id="AboutThis-Disclaimer">
+INSERT INTO products VALUES (1, 'The Medical Examiner', '<div class="product-shortDescription-disclaimer" data-tl-itemId="AboutThis-Disclaimer">
 <div class="prod-newItemDisclaimer"><span class="font-bold">We aim to show you accurate product information.</span>&nbsp;Manufacturers, suppliers and others provide what you see here, and we have not verified it.&nbsp;<p>&nbsp;</p><a style="color: black">See our disclaimer</a><p>&nbsp;</p></div>
 </div>
-<div class="about-desc" data-tl-id="AboutThis-ShortDescription"><strong>From the bestselling author of&nbsp;<em>Alias Grace</em>&nbsp;and the MaddAddam trilogy, here is the #1&nbsp;<em>New York Times&nbsp;</em>bestseller and seminal work of speculative fiction from the Booker Prize-winning author.</strong>
+<div class="about-desc" data-tl-itemId="AboutThis-ShortDescription"><strong>From the bestselling author of&nbsp;<em>Alias Grace</em>&nbsp;and the MaddAddam trilogy, here is the #1&nbsp;<em>New York Times&nbsp;</em>bestseller and seminal work of speculative fiction from the Booker Prize-winning author.</strong>
 <p>&nbsp;</p>
 <strong>Now a Hulu series starring Elizabeth Moss, Samira Wiley, and Joseph Fiennes. Includes a new introduction by Margaret Atwood.</strong>
 <p>&nbsp;</p>

@@ -1,17 +1,17 @@
 package com.bookstore.model;
 
 public class Product {
-	private Integer id;
+	private Integer itemId;
 
 	private String name;
 
-	private String description;
+	private String shortDescription;
 
-	private Integer category_id;
+	private String categoryNode;
 
 	private Integer spec_id;
 
-	private Double price;
+	private Double salePrice;
 
 	private Double discount;
 
@@ -19,39 +19,40 @@ public class Product {
 
 	private boolean is_new;
 
-	private String picture_url;
+	private String thumbnailImage;
 
 	private Integer remaining_quantity;
 
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description +
-				", category_id=" + category_id + ", price=" + price + ", discount=" + discount + ", is_best_seller=" + is_best_seller +
-				", is_new=" + is_new +", picture_url=" + picture_url +", remaining_quantity=" + remaining_quantity +"]";
+		return "Product [itemId=" + itemId + ", name=" + name + ", shortDescription=" + shortDescription +
+				", categoryNode=" + categoryNode + ", salePrice=" + salePrice + ", discount=" + discount + ", is_best_seller=" + is_best_seller +
+				", is_new=" + is_new +", thumbnailImage=" + thumbnailImage +", remaining_quantity=" + remaining_quantity +"]";
 	}
 
 	public Product() {
 	}
 
 	public Product(Product product) {
-		this.id = product.id;
+		this.itemId = product.itemId;
 		this.name = product.name;
-		this.description = product.description;
-		this.category_id = product.category_id;
-		this.price = product.price;
+		this.shortDescription = product.shortDescription;
+		this.categoryNode = product.categoryNode;
+		this.salePrice = product.salePrice;
 		this.discount = product.discount;
 		this.is_best_seller = product.is_best_seller;
 		this.is_new = product.is_new;
-		this.picture_url = product.picture_url;
+		this.thumbnailImage = product.thumbnailImage;
 		this.remaining_quantity = product.remaining_quantity;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getItemId() {
+		return itemId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
 	public String getName() {
@@ -62,20 +63,20 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getShortDescription() {
+		return shortDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 
-	public Integer getCategory_id() {
-		return category_id;
+	public String getCategoryNode() {
+		return categoryNode;
 	}
 
-	public void setCategory_id(Integer category_id) {
-		this.category_id = category_id;
+	public void setCategoryNode(String categoryNode) {
+		this.categoryNode = categoryNode;
 	}
 
 	public Integer getSpec_id() {
@@ -86,12 +87,12 @@ public class Product {
 		this.spec_id = spec_id;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getSalePrice() {
+		return salePrice;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
 	}
 
 	public Double getDiscount() {
@@ -118,12 +119,12 @@ public class Product {
 		this.is_new = is_new;
 	}
 
-	public String getPicture_url() {
-		return picture_url;
+	public String getThumbnailImage() {
+		return thumbnailImage;
 	}
 
-	public void setPicture_url(String picture_url) {
-		this.picture_url = picture_url;
+	public void setThumbnailImage(String thumbnailImage) {
+		this.thumbnailImage = thumbnailImage;
 	}
 
 	public Integer getRemaining_quantity() {

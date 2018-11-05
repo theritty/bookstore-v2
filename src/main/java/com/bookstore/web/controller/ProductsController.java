@@ -16,7 +16,7 @@ public class ProductsController {
 	ProductsService productsService;
 
 	@RequestMapping(
-			value = "/getProductById2/{id}",
+			value = "/product/{id}",
 			method = RequestMethod.GET)
 	public ModelAndView getProductById2(@PathVariable(value = "id") String id) throws CustomException {
 		return new ModelAndView("product", "productObj", productsService.findById(Integer.parseInt(id)));

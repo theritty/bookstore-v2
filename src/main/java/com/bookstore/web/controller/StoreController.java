@@ -16,14 +16,14 @@ public class StoreController {
 	StoreService storeService;
 
 	@RequestMapping(
-			value = "/products2/{nextPage}",
+			value = "/store/{nextPage}",
 			method = RequestMethod.GET)
 	public ModelAndView redirectToTwitter(@PathVariable(value = "nextPage") String nextPage) throws CustomException {
 		return new ModelAndView("store", "storeResponse", storeService.getProductsOfPage(Integer.parseInt(nextPage)));
 	}
 
 	@RequestMapping(
-			value = "/products2",
+			value = "/store",
 			method = RequestMethod.GET)
 	public ModelAndView products2() throws CustomException {
 		return new ModelAndView("store", "storeResponse", storeService.getProductsOfPage(1));

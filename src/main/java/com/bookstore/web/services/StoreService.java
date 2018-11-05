@@ -50,7 +50,7 @@ public class StoreService {
 		//get paginated products from external api
 		Map<String, Object> map = ExternalApiCaller.getInstance()
 				.addApiParams("category","3920")
-				.addApiParams("maxId", String.valueOf(pageMaxIds.get((int) Math.floor(page/50))))
+				.addApiParams("maxId", String.valueOf(pageMaxIds.get((int) Math.floor(page/50.0))))
 				.setApiPath("/v1/paginated/items")
 				.callApi();
 

@@ -1,40 +1,72 @@
 package com.bookstore.web.services;
 
-import com.bookstore.dao.StoreDao;
-import com.bookstore.model.Product;
-import com.bookstore.model.StoreResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bookstore.exceptions.CustomException;
+import com.bookstore.helper.ExternalApiCaller;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class StoreService {
 
-	private static final Logger logger = LoggerFactory.getLogger(StoreService.class);
+	private static ArrayList<Integer> pageMaxIds;
 
-	@Autowired
-	StoreDao storeDao;
+	@PostConstruct
+	public void init() {
+		pageMaxIds = new ArrayList<>();
+		pageMaxIds.add(0);
+	}
 
-	public StoreResponse getProductsOfPage(int page) {
-
-			// Following gets the list of products for he given page containing the following fields: id, name, price, discount
-			List<Product> result = storeDao.findProductsOfPage(page);
-
-
-			// Gets the total number of products saved into db
-			// Then finds the number of pages which will be shown on view
-			int result2 = storeDao.findCountOfProducts();
-
-
-			// Concatenates the information received by previous two commands and redirects to view.
-			StoreResponse response = new StoreResponse(result,
-					(int) Math.ceil(result2/20.0), (int) Math.ceil(result.size()/20.0), page);
-			return response;
-
+	public void initPageInformation(int sizeOfPages) {
+		//initialize page list
+		pageMaxIds = new ArrayList<>();
+		for (int i = 0; i < sizeOfPages; i++) {
+			pageMaxIds.add(0);
 		}
+	}
+
+	private void updatePageArray(Map<String, Object> map, int page) {
+		int sizeOfPages = Integer.parseInt((String) map.get("totalPages"))+1 ;
+
+		//if list is empty initiliaze with zeros
+		if(pageMaxIds.size() < sizeOfPages)
+			initPageInformation(sizeOfPages);
+
+		//set next page max id value in list
+		pageMaxIds.set(
+				(int) Math.floor(page/50)+1,
+				Integer.parseInt(((String) map.get("nextPage")).split("&maxId=")[1].split("&")[0])
+		);
+	}
+
+	public Map<String, Object> getProductsOfPage(int page) throws CustomException {
+
+		//get paginated products from external api
+		Map<String, Object> map = ExternalApiCaller.getInstance()
+				.addApiParams("category","3920")
+				.addApiParams("maxId", String.valueOf(pageMaxIds.get((int) Math.floor(page/50))))
+				.setApiPath("/v1/paginated/items")
+				.callApi();
+
+		//update page array for further use
+		updatePageArray(map, page);
+
+		//update items list to place in a table
+		List<Object> itemsList = (List<Object>) map.get("items");
+		itemsList = itemsList.subList((page%50)*20,(page%50)*20+20);
+		map.put("items", Lists.partition(itemsList, 4));
+
+		//add necessary fields to map
+		map.put("currentPage", page);
+		map.put("pages",IntStream.range(1,  Integer.parseInt((String) map.get("totalPages"))+1 ).boxed().collect(Collectors.toList()));
+
+		return map;
+	}
 
 }

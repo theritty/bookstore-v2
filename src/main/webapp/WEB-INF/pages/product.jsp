@@ -56,26 +56,26 @@
     <div style="height: 300px;">
         <div class="divide-2">
             <img
-                src="<c:url value="${productObj.thumbnailImage}"/>"
+                src="<c:url value="${productObj.largeImage}"/>"
                 width="80%" height="100%" alt="${productObj.name}" /></td>
         </div>
 
         <div  class="divide-2">
             <h4> <b>${productObj.name }</b> </h4>
-            <p> <span class="small_underlined"> ${fn:length(productObj.reviews)} reviews</span>
-                <span class="small_underlined">  ${productObj.specification.author }</span> </p>
+            <p> <span class="small_underlined"> ${productObj.numReviews} reviews</span>
+                <span class="small_underlined">  ${productObj.brandName }</span> </p>
 
-            <c:if test="${productObj.discount == 0.0}">
+            <c:if test="${productObj.msrp == 0.0}">
                 <p><strong>$${productObj.salePrice}</strong></p>
             </c:if>
-            <c:if test="${productObj.discount != 0.0}">
+            <c:if test="${productObj.msrp != 0.0}">
 
-                <strong> $${productObj.salePrice*(1-productObj.discount)}</strong>
+                <strong> $${productObj.salePrice}</strong>
                 &nbsp;&nbsp;&nbsp;
-                <span style="color: gray; font-size: 13px;"> List </span>  <span class="discountText"> $${productObj.salePrice} </span>
+                <span style="color: gray; font-size: 13px;"> List </span>  <span class="discountText"> $${productObj.msrp} </span>
             </c:if>
 
-            <div itemId="selectQty" style="    margin-top: 70px">
+            <div id="selectQty" style="    margin-top: 70px">
                 <p>Qty: ${productObj.quantityString}
                     <button type="button" onclick="" style="border-radius: 100px;
                             font-weight: 400;
@@ -92,7 +92,7 @@
     <hr>
 
     <h3>About The Product</h3>
-    <p itemId="descriptionField">${productObj.shortDescription}</p>
+        <p id="descriptionField">${productObj.shortDescription}</p>
     <hr>
 
 
@@ -151,9 +151,10 @@
 
 
     <h3>Reviews</h3>
+    <p> Customer rating: ${productObj.customerRating} / 5</p>
     <c:forEach items="${productObj.reviews}" var="prod">
 
-        <p> <b>${prod.customer_name}</b> ${prod.text}</p>
+        <p> <b>${prod.reviewer}</b> ${prod.reviewText}</p>
     </c:forEach>
 
     <div>

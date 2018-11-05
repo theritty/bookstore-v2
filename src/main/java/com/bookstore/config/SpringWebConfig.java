@@ -3,6 +3,7 @@ package com.bookstore.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
  
 @EnableWebMvc
 @Configuration
+@EnableTransactionManagement
 @ComponentScan({"com.bookstore.web"})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
  

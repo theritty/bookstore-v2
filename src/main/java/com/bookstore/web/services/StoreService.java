@@ -64,7 +64,7 @@ public class StoreService {
 
 		//add necessary fields to map
 		map.put("currentPage", page);
-		map.put("pages",IntStream.range(1,  Integer.parseInt((String) map.get("totalPages"))+1 ).boxed().collect(Collectors.toList()));
+		map.put("pages",IntStream.range(1,  (Integer.parseInt((String) map.get("totalPages"))+1)*50 ).boxed().collect(Collectors.toList()));
 
 		return map;
 	}

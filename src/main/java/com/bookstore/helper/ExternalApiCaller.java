@@ -44,6 +44,11 @@ public class ExternalApiCaller {
     }
 
     private ExternalApiCaller() throws CustomException {
+        uploadConfigs();
+        initializeRestTemplate();
+    }
+
+    private void uploadConfigs() throws CustomException {
         //upload config file
         String resourceName = "config.properties";
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -57,7 +62,9 @@ public class ExternalApiCaller {
         //get api url & key
         apiKey = props.getProperty("api.key");
         apiUrl = props.getProperty("api.url");
+    }
 
+    private void initializeRestTemplate() {
         //create rest template for external api calls
         ClientHttpRequestFactory requestFactory = new
                 HttpComponentsClientHttpRequestFactory(HttpClients.createDefault());

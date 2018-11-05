@@ -97,7 +97,6 @@
 
 
     <div style="text-align:center;width:100%;">
-
         <c:if test="${storeResponse.currentPage > 1}">
             <a href="/store/${storeResponse.currentId-1}" style="text-decoration:  none; margin:auto;">
                 Prev
@@ -123,6 +122,8 @@
                 Next
             </a>
         </c:if>
+
+
     </div>
 </div>
 </body>

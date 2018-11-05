@@ -151,15 +151,19 @@
 
 
     <h3>Reviews</h3>
-    <p> Customer rating: ${productObj.customerRating} / 5</p>
-    <c:forEach items="${productObj.reviews}" var="prod">
 
-        <p> <b>${prod.reviewer}</b> ${prod.reviewText}</p>
-    </c:forEach>
+    <c:if test="${productObj.reviews.size() <= 0}">
+        <p>No reviews</p>
+    </c:if>
+    <c:if test="${productObj.reviews.size() > 0}">
 
-    <div>
+        <p> Customer rating: ${productObj.customerRating} / 5</p>
+        <c:forEach items="${productObj.reviews}" var="prod">
 
-    </div>
+            <p> <b>${prod.reviewer}</b> ${prod.reviewText}</p>
+        </c:forEach>
+
+    </c:if>
 
 
 </div>
